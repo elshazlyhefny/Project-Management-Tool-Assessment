@@ -122,6 +122,6 @@ bonus tasks, please manage your time accordingly.
     ```
     If you choose to use a database other than SQLite, you will need to create the database and run your application's [database migrations:](https://laravel.com/docs/11.x/migrations)
     ```
-    php artisan migrate
+    php artisan migrate --seed
     ```
 # Explanation of the design pattern chosen and how it was implemented.

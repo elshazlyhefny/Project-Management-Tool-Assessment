@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
-use App\Models\project;
-use App\Http\Requests\StoreprojectRequest;
-use App\Http\Requests\UpdateprojectRequest;
+use App\Models\task;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoretaskRequest;
+use App\Http\Requests\UpdatetaskRequest;
 
-class ProjectController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return task::all();
     }
 
     /**
@@ -27,7 +28,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreprojectRequest $request)
+    public function store(StoretaskRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(project $project)
+    public function show(task $task)
     {
         //
     }
@@ -43,7 +44,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(project $project)
+    public function edit(task $task)
     {
         //
     }
@@ -51,7 +52,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateprojectRequest $request, project $project)
+    public function update(UpdatetaskRequest $request, task $task)
     {
         //
     }
@@ -59,7 +60,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(project $project)
+    public function destroy(task $task)
     {
         //
     }
