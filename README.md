@@ -124,4 +124,10 @@ bonus tasks, please manage your time accordingly.
     ```
     php artisan migrate --seed
     ```
+- Apis:
+
+    To see all REST api 
+    ```
+    php artisan route:list --path=api
+    ```
 # Explanation of the design pattern chosen and how it was implemented.

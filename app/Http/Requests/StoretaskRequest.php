@@ -11,7 +11,7 @@ class StoretaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoretaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'project_id' => ['required', 'exists:projects,id'],
+            // status check if in todo, in-progress, done
+            'status' => ['required', 'string', 'in:todo,in-progress,done'],
         ];
     }
 }

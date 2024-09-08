@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Models\project;
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreprojectRequest;
 use App\Http\Requests\UpdateprojectRequest;
+use App\Http\Resources\ProjectResource;
 
 class ProjectController extends Controller
 {
@@ -14,15 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return project::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        // return project resource
+        return ProjectResource::collection(project::with('tasks')->get());
     }
 
     /**
@@ -30,7 +24,9 @@ class ProjectController extends Controller
      */
     public function store(StoreprojectRequest $request)
     {
-        //
+        // create project
+        $project = Project::create($request->validated());
+        return new ProjectResource($project->load('tasks'));
     }
 
     /**
@@ -38,15 +34,8 @@ class ProjectController extends Controller
      */
     public function show(project $project)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(project $project)
-    {
-        //
+        // return project resource
+        return new ProjectResource($project->load('tasks'));
     }
 
     /**
@@ -54,7 +43,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateprojectRequest $request, project $project)
     {
-        //
+        // update project
+        $project->update($request->validated());
+        return new ProjectResource($project->load('tasks'));
     }
 
     /**
@@ -62,6 +53,8 @@ class ProjectController extends Controller
      */
     public function destroy(project $project)
     {
-        //
+        // delete project
+        $project->delete();
+        return response()->noContent();
     }
 }
